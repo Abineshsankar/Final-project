@@ -34,14 +34,13 @@ print("model loaded")
 # In[3]: Train Model
 
 
-train_file = bz2.BZ2File('test.ft.txt.bz2')
+train_file = open('test.ft.txt', 'r', encoding='utf-8')
+
 
 
 # In[4]:
 
-
 train_file_lines = train_file.readlines()
-train_file_lines = [x.decode('utf-8') for x in train_file_lines]
 train_labels = [0 if x.split(' ')[0] == '__label__1' else 1 for x in train_file_lines]
 train_sentences = [x.split(' ', 1)[1][:-1].lower() for x in train_file_lines]
 for i in range(len(train_sentences)):
@@ -80,7 +79,7 @@ app = Flask(__name__)
 
 conn = MySQLdb.connect(host= "localhost",
                   user="root",
-                  passwd="pukar11",
+                  passwd="P@sw0rds",
                   db="rating")
 c = conn.cursor()
 
@@ -96,7 +95,7 @@ def hello():
 def jacket():
     conn = MySQLdb.connect(host= "localhost",
                   user="root",
-                  passwd="pukar11",
+                  passwd="P@sw0rds",
                   db="rating")
     c = conn.cursor()
 
@@ -133,7 +132,7 @@ def postreview():
     #Save the review, username and predicted value to the database
     conn = MySQLdb.connect(host= "localhost",
                   user="root",
-                  passwd="pukar11",
+                  passwd="P@sw0rds",
                   db="rating")
     c = conn.cursor()
 
@@ -157,9 +156,10 @@ def postreview():
 
 
 
-if __name__ == "__main__":
-    app.run()
 
+
+if __name__ == "__main__":
+    app.run(debug=True)
 
 
 
